@@ -9,7 +9,7 @@ Templates are written in Go's [`text/template`](http://golang.org/pkg/text/templ
 
 ### map
 
-creates a key-value map of string -> interface{}
+Creates a key-value map of string -> interface{}.
 
 ```
 {{$endpoint := map "name" "elasticsearch" "private_port" 9200 "public_port" 443}}
@@ -19,7 +19,30 @@ private-port: {{index $endpoint "private_port"}}
 public-port: {{index $endpoint "public_port"}}
 ```
 
-specifically useful if you a sub-template and you want to pass multiple values to it.
+Specifically useful if you a sub-template and you want to pass multiple values to it.
+
+### merge
+
+Merges 2 map of string -> interface{} to a new one (taking the first as destination).
+
+```
+{{$credentials := map "access_key" "AKIAIOSFODNN7EXAMPLE" "secret_key" "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"}}
+
+{{define "s3"}}
+bucket: {{.bucket}}
+access_key: {{.access_key}}
+secret_key: {{.secret_key}}
+{{end}}
+
+[img]
+{{template "redis" (merge (map "bucket" "hello-img") $credentials)}}
+
+[cdn]
+{{template "redis" (merge (map "bucket" "hello-cdn") $credentials)}}
+```
+
+Specifically useful if a sub-template is called multiple times with only some arguments changing.
+
 
 ### base
 
