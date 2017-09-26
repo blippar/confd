@@ -46,6 +46,7 @@ type TemplateResource struct {
 	Prefix        string
 	ReloadCmd     string `toml:"reload_cmd"`
 	Src           string
+	Sub           []string
 	StageFile     *os.File
 	Uid           int
 	funcMap       map[string]interface{}
@@ -105,6 +106,10 @@ func NewTemplateResource(path string, config Config) (*TemplateResource, error) 
 	}
 
 	tr.Src = filepath.Join(config.TemplateDir, tr.Src)
+	for k, sub := range tr.Sub {
+		tr.Sub[k] = filepath.Join(config.TemplateDir, sub)
+	}
+
 	return &tr, nil
 }
 
@@ -140,8 +145,14 @@ func (t *TemplateResource) createStageFile() error {
 	}
 
 	log.Debug("Compiling source template " + t.Src)
+	templates := append([]string{}, t.Src)
 
-	tmpl, err := template.New(filepath.Base(t.Src)).Funcs(t.funcMap).ParseFiles(t.Src)
+	if len(t.Sub) > 0 {
+		log.Debug("Compiling sub-templates %s", strings.Join(t.Sub, ", "))
+		templates = append(templates, t.Sub...)
+	}
+
+	tmpl, err := template.New(filepath.Base(t.Src)).Funcs(t.funcMap).ParseFiles(templates...)
 	if err != nil {
 		return fmt.Errorf("Unable to process template %s, %s", t.Src, err)
 	}
