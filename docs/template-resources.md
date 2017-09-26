@@ -14,6 +14,7 @@ Template resources are stored under the `/etc/confd/conf.d` directory by default
 * `gid` (int) - The gid that should own the file. Defaults to the effective gid.
 * `mode` (string) - The permission mode of the file.
 * `uid` (int) - The uid that should own the file. Defaults to the effective uid.
+* `sub` (array of strings) - An array of relative path to [sub-templates](templates.md) loaded alongside the source template.
 * `reload_cmd` (string) - The command to reload config.
 * `check_cmd` (string) - The command to check config. Use `{{.src}}` to reference the rendered source template.
 * `prefix` (string) - The string to prefix to keys.
@@ -22,6 +23,9 @@ Template resources are stored under the `/etc/confd/conf.d` directory by default
 
 When using the `reload_cmd` feature it's important that the command exits on its own. The reload
 command is not managed by confd, and will block the configuration run until it exits.
+
+Sub-templates loaded using `sub` are not rendered, only defined templates
+(via `{{define "name"}}...{{end}}`) will be loaded and available to your `src` template.
 
 ## Example
 
