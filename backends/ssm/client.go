@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ssm"
-	"github.com/kelseyhightower/confd/log"
+	"github.com/blippar/confd/log"
 )
 
 type Client struct {
