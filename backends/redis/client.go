@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/garyburd/redigo/redis"
-	"github.com/kelseyhightower/confd/log"
+	"github.com/blippar/confd/log"
 )
 
 // Client is a wrapper around the redis client

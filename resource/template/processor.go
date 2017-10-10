@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kelseyhightower/confd/log"
+	"github.com/blippar/confd/log"
 )
 
 type Processor interface {

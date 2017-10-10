@@ -2,19 +2,19 @@
 
 ### Binary Download
 
-Currently confd ships binaries for OS X and Linux 64bit systems. You can download the latest release from [GitHub](https://github.com/kelseyhightower/confd/releases)
+Currently confd ships binaries for OS X and Linux 64bit systems. You can download the latest release from [GitHub](https://github.com/blippar/confd/releases)
 
 #### OS X
 
 ```
-$ wget https://github.com/kelseyhightower/confd/releases/download/v0.14.0/confd-0.14.0-darwin-amd64
+$ wget https://github.com/blippar/confd/releases/download/v0.14.0/confd-0.14.0-darwin-amd64
 ```
 
 #### Linux
 
 Download the binary
 ```
-$ wget https://github.com/kelseyhightower/confd/releases/download/v0.14.0/confd-0.14.0-linux-amd64
+$ wget https://github.com/blippar/confd/releases/download/v0.14.0/confd-0.14.0-linux-amd64
 ```
 Move the binary to an installation path, make it executable, and add to path
 ```
@@ -49,12 +49,12 @@ With multi-stage builds you can keep the whole process contained in your Dockerf
 FROM golang:1.9-alpine as confd
 
 RUN apk add --no-cache make unzip
-RUN mkdir -p /go/src/github.com/kelseyhightower/confd && \
-  ln -s /go/src/github.com/kelseyhightower/confd /app
+RUN mkdir -p /go/src/github.com/blippar/confd && \
+  ln -s /go/src/github.com/blippar/confd /app
 
 WORKDIR /app
 
-RUN wget -O /tmp/confd.zip https://github.com/kelseyhightower/confd/archive/v0.14.0.zip && \
+RUN wget -O /tmp/confd.zip https://github.com/blippar/confd/archive/v0.14.0.zip && \
     unzip -d /tmp/confd /tmp/confd.zip && \
     cp -r /tmp/confd/*/* /app && \
     rm -rf /tmp/confd* && \
