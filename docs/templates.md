@@ -123,6 +123,7 @@ value: {{getv "/key"}}
 
 ```
 value: {{getv "/key" "default_value"}}
+```
 
 ### cgetv
 
