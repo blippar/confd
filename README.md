@@ -21,8 +21,8 @@ Go 1.8 is required to build confd, which uses the new vendor directory.
 
 ```
 $ mkdir -p $GOPATH/src/github.com/kelseyhightower
-$ git clone https://github.com/kelseyhightower/confd.git $GOPATH/src/github.com/kelseyhightower/confd
-$ cd $GOPATH/src/github.com/kelseyhightower/confd
+$ git clone https://github.com/blippar/confd.git $GOPATH/src/github.com/blippar/confd
+$ cd $GOPATH/src/github.com/blippar/confd
 $ make
 ```
 

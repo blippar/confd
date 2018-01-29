@@ -23,6 +23,7 @@ func newFuncMap() map[string]interface{} {
 	m["jsonArray"] = UnmarshalJsonArray
 	m["dir"] = path.Dir
 	m["map"] = CreateMap
+	m["merge"] = MergeMap
 	m["getenv"] = Getenv
 	m["join"] = strings.Join
 	m["datetime"] = time.Now
@@ -149,6 +150,17 @@ func CreateMap(values ...interface{}) (map[string]interface{}, error) {
 		dict[key] = values[i+1]
 	}
 	return dict, nil
+}
+
+// MergeMap merges two maps together
+func MergeMap(map1, map2 map[string]interface{}) (map[string]interface{}, error) {
+	if len(map1) == 0 {
+		return map2, nil
+	}
+	for k, v := range map2 {
+		map1[k] = v
+	}
+	return map1, nil
 }
 
 func UnmarshalJsonObject(data string) (map[string]interface{}, error) {

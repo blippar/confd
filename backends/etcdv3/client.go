@@ -9,8 +9,8 @@ import (
 
 	"golang.org/x/net/context"
 
+	"github.com/blippar/confd/log"
 	"github.com/coreos/etcd/clientv3"
-	"github.com/kelseyhightower/confd/log"
 )
 
 // Client is a wrapper around the etcd client

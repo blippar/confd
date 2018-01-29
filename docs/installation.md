@@ -2,19 +2,19 @@
 
 ### Binary Download
 
-Currently confd ships binaries for OS X and Linux 64bit systems. You can download the latest release from [GitHub](https://github.com/kelseyhightower/confd/releases)
+Currently confd ships binaries for OS X and Linux 64bit systems. You can download the latest release from [GitHub](https://github.com/blippar/confd/releases)
 
 #### OS X
 
 ```
-$ wget https://github.com/kelseyhightower/confd/releases/download/v0.15.0/confd-0.15.0-darwin-amd64
+$ wget https://github.com/blippar/confd/releases/download/v0.15.0/confd-0.15.0-darwin-amd64
 ```
 
 #### Linux
 
 Download the binary
 ```
-$ wget https://github.com/kelseyhightower/confd/releases/download/v0.15.0/confd-0.15.0-linux-amd64
+$ wget https://github.com/blippar/confd/releases/download/v0.15.0/confd-0.15.0-linux-amd64
 ```
 Move the binary to an installation path, make it executable, and add to path
 ```
@@ -50,15 +50,15 @@ FROM golang:1.9-alpine as confd
 
 ARG CONFD_VERSION=0.15.0
 
-ADD https://github.com/kelseyhightower/confd/archive/v${CONFD_VERSION}.tar.gz /tmp/
+ADD https://github.com/blippar/confd/archive/v${CONFD_VERSION}.tar.gz /tmp/
 
 RUN apk add --no-cache \
     bzip2 \
     make && \
-  mkdir -p /go/src/github.com/kelseyhightower/confd && \
-  cd /go/src/github.com/kelseyhightower/confd && \
+  mkdir -p /go/src/github.com/blippar/confd && \
+  cd /go/src/github.com/blippar/confd && \
   tar --strip-components=1 -zxf /tmp/v${CONFD_VERSION}.tar.gz && \
-  go install github.com/kelseyhightower/confd && \
+  go install github.com/blippar/confd && \
   rm -rf /tmp/v${CONFD_VERSION}.tar.gz
 
 FROM tomcat:8.5.15-jre8-alpine
